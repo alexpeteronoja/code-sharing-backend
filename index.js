@@ -10,7 +10,13 @@ const port = 3000;
 dotenv.config();
 
 const app = express();
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(
+    cors({
+        origin: process.env.NODE_ENV === "production" ?
+            "https://code-sharing-delta.vercel.app" :
+            "http://localhost:5173",
+    })
+);
 app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));
 app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: true }));
