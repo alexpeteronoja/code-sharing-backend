@@ -13,7 +13,10 @@ const app = express();
 app.use(
     cors({
         origin: process.env.NODE_ENV === "production" ?
-            "https://code-sharing-delta.vercel.app" :
+            [
+                "https://code-sharing-delta.vercel.app",
+                "https://code-sharing-main.vercel.app/",
+            ] :
             "http://localhost:5173",
     })
 );
